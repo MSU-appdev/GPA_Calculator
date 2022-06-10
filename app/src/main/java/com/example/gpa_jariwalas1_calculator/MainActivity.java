@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     EditText ed1, ed2, ed3, ed4, ed5, ed6;
+    int flag= 0;
     Button  btn1;
 
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 CNT();
+                CLEAR();
 
             }
         });
@@ -67,34 +69,49 @@ public class MainActivity extends AppCompatActivity {
         int tot;
         int avg;
 
-        m1 = Integer.parseInt(ed1.getText().toString());
-        m2 = Integer.parseInt(ed2.getText().toString());
-        m3 = Integer.parseInt(ed3.getText().toString());
-        m4 = Integer.parseInt(ed4.getText().toString());
-        m5 = Integer.parseInt(ed5.getText().toString());
+        if (flag % 2 == 0) {
+            if (ed1.getText().toString().equals("") || ed2.getText().toString().equals("") || ed3.getText().toString().equals("") || ed4.getText().toString().equals("") || ed5.getText().toString().equals(""))
+            {
+                ed6.setText("ENTER ALL GRADES IN THE FIELD");
+            }
+            else {
+                m1 = Integer.parseInt(ed1.getText().toString());
+                m2 = Integer.parseInt(ed2.getText().toString());
+                m3 = Integer.parseInt(ed3.getText().toString());
+                m4 = Integer.parseInt(ed4.getText().toString());
+                m5 = Integer.parseInt(ed5.getText().toString());
 
+                tot = m1 + m2 + m3 + m4 + m5;
+                avg = tot / 5;
 
-        tot = m1 + m2 + m3 + m4 + m5;
-        avg =tot/5;
-
-        if (avg < 60)
-        {
-            ed6.setBackgroundColor(Color.RED);
-            ed6.setText(String.valueOf(avg));
-        }
-        else if (avg > 60 && avg < 80)
-        {
-            ed6.setBackgroundColor(Color.YELLOW);
-            ed6.setText(String.valueOf(avg));
-        }
-        else if (avg >= 80 && avg <= 100)
-        {
-            ed6.setBackgroundColor(Color.GREEN);
-            ed6.setText(String.valueOf(avg));
-        }
-        else
-        {
-            ed6.setBackgroundColor(Color.BLUE);
-        }
+                if (avg < 60) {
+                    ed6.setBackgroundColor(Color.RED);
+                    ed6.setText(String.valueOf(avg));
+                } else if (avg > 60 && avg < 80) {
+                    ed6.setBackgroundColor(Color.YELLOW);
+                    ed6.setText(String.valueOf(avg));
+                } else if (avg >= 80 && avg <= 100) {
+                    ed6.setBackgroundColor(Color.GREEN);
+                    ed6.setText(String.valueOf(avg));
+                } else {
+                    ed6.setBackgroundColor(Color.BLUE);
+                }
+                flag++;
+            }}
+                else
+                {
+                    ed1.setText("");
+                    ed2.setText("");
+                    ed3.setText("");
+                    ed4.setText("");
+                    ed5.setText("");
+                    ed6.setText("");
+                    btn1.setText("Compute GPA");
+                }
+    }
+    public void CLEAR()
+    {
+        btn1.setText("Clear");
+       // ed6.getText().clear();
     }
 }

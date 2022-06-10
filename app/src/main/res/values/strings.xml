@@ -8,4 +8,5 @@
     <string name="gcourse5">Course 5</string>
     <string name="gpacount">GPA</string>
     <string name="submit">Compute GPA</string>
+    <string name="clear">clear</string>
 </resources>
